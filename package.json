@@ -1,0 +1,29 @@
+{
+  "name": "react-d3-sankey",
+  "version": "1.0.0",
+  "description": "sankey data visualisations",
+  "main": "src/index.js",
+  "author": "Jolanta Jas",
+  "dependencies": {
+    "react": "16.8.5",
+    "react-dom": "16.8.5",
+    "react-scripts": "2.1.8",
+    "react-spring": "8.0.18"
+  },
+  "devDependencies": {
+    "d3": "^5.15.1",
+    "d3-sankey": "^0.12.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
