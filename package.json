@@ -4,6 +4,7 @@
   "description": "sankey data visualisations",
   "main": "src/index.js",
   "author": "Jolanta Jas",
+  "license": "ISC",
   "dependencies": {
     "react": "16.8.5",
     "react-dom": "16.8.5",
@@ -11,10 +12,13 @@
     "react-spring": "8.0.18"
   },
   "devDependencies": {
+    "csv-parser": "^2.3.2",
     "d3": "^5.15.1",
-    "d3-sankey": "^0.12.3"
+    "d3-sankey": "^0.12.3",
+    "fs": "^0.0.1-security"
   },
   "scripts": {
+    "n": "node index.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

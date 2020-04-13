@@ -10,7 +10,7 @@ function App() {
 
   useEffect(() => {
     fetch('https://raw.githubusercontent.com/ozlongblack/d3/master/energy.json')
-      .then(res => res.json())
+      .then(res => console.log(res.json()))
       .then(data => setData(data))
   }, [])
 
