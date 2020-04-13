@@ -11,12 +11,8 @@ const getEuralCodeDescriptions = () => {
       allDestinations.push(destination)
     })
     .on('end', () => {
-      console.log(allDestinations.length)
-      console.log(allOrigins.length)
       console.log(new Set(allDestinations))
       console.log(new Set(allOrigins))
-      console.log(allDestinations.length)
-      console.log(allOrigins.length)
       //   saveFile('EWCcodeDescriptions', JSON.stringify([allCodes]))
     })
 }
