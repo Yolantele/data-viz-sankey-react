@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import Sankey from './Sankey'
 import { Layout, Card, Button } from 'antd'
-
+import { NODES } from '../sampleData'
 import './styles.css'
 const { Header, Footer, Content } = Layout
 const App = () => {
@@ -10,12 +10,12 @@ const App = () => {
   const [editMode, setEditMode] = useState(false)
 
   useEffect(() => {
-    fetch('https://raw.githubusercontent.com/ozlongblack/d3/master/energy.json')
-      .then(res => res.json())
-      .then(data => {
-        setData(data)
-        console.group(data)
-      })
+    // fetch('https://raw.githubusercontent.com/ozlongblack/d3/master/energy.json')
+    //   .then(res => res.json())
+    //   .then(data => {
+    setData(NODES)
+    console.group(data)
+    // })
   }, [])
 
   return (
