@@ -16,6 +16,7 @@
     "csv-parser": "^2.3.2",
     "d3": "^5.15.1",
     "d3-sankey": "^0.12.3",
+    "d3-sankey-circular": "^0.34.0",
     "fs": "^0.0.1-security"
   },
   "scripts": {

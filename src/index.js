@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import Sankey from './Sankey'
 import { Layout, Card, Button } from 'antd'
-import { NODES } from '../sampleData'
+import { NODES } from './geoFluxusData'
 import './styles.css'
 const { Header, Footer, Content } = Layout
 const App = () => {
@@ -22,11 +22,13 @@ const App = () => {
     <div className='App'>
       <Header />
       <Content>
-        <Card style={{ margin: 20, padding: 20, minWidth: 700 }}>
-          <Button type={'primary'} onClick={() => setEditMode(!editMode)}>
+        <Card style={{ margin: 20, padding: 20, minWidth: 900 }}>
+          <Button type={'primary'} onClick={() => setEditMode(!editMode)} style={{ margin: 30 }}>
             Edit Mode
           </Button>
-          <Sankey data={data} edit={editMode} />
+          <div style={{ position: 'relative', width: 800, height: 800 }}>
+            <Sankey data={data} edit={editMode} />
+          </div>
         </Card>
       </Content>
       <Footer style={{ height: 200 }} />

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import * as d3 from 'd3'
 import * as d3Sankey from 'd3-sankey'
+import * as d3Circular from 'd3-sankey-circular'
 const size = {
   width: 700,
   height: 600
@@ -15,7 +16,7 @@ const getMousePosition = event => {
   }
 }
 
-const Rect = ({ index, x0, x1, y0, y1, name, value, length, colors }) => {
+const Rect = ({ index, x0, x1, y0, y1, name, length, colors }) => {
   return (
     <>
       <rect
@@ -27,17 +28,18 @@ const Rect = ({ index, x0, x1, y0, y1, name, value, length, colors }) => {
         data-index={index}
       />
       <text
-        x={x0 < size.width / 2 ? x1 + 6 : x0 - 6}
+        x={x0 < size.width / 2 ? x1 - 20 : x0 + 20}
         y={(y1 + y0) / 2}
         style={{
           fill: d3.rgb(colors(index / length)).darker(),
           alignmentBaseline: 'middle',
-          fontSize: 9,
-          textAnchor: x0 < size.width / 2 ? 'start' : 'end',
+          fontSize: 12,
+          //   textAnchor: x0 < size.width / 2 ? 'start' : 'end',
+          textAnchor: x0 < size.width / 2 ? 'end' : 'start',
           pointerEvents: 'none',
           userSelect: 'none'
         }}>
-        {name}
+        {`${name.substr(0, 2)}`}
       </text>
     </>
   )
@@ -45,7 +47,6 @@ const Rect = ({ index, x0, x1, y0, y1, name, value, length, colors }) => {
 
 const Link = ({ data, width, length, colors }) => {
   const link = d3Sankey.sankeyLinkHorizontal()
-
   return (
     <>
       <defs>
@@ -70,16 +71,16 @@ const Link = ({ data, width, length, colors }) => {
 }
 
 const Sankey = props => {
+  console.log('saneky justify ----', size)
   const dragElement = useRef(null)
   const graph = useRef(null)
   const offset = useRef(null)
 
   const colors = props.edit ? d3.interpolateWarm : d3.interpolateCool
-  const sankey = d3Sankey
-    .sankey()
-    .nodeAlign(d3Sankey.sankeyJustify)
+  const sankey = d3Circular
+    .sankeyCircular()
     .nodeWidth(10)
-    .nodePadding(10)
+    .nodePadding(30)
     .extent([
       [0, 0],
       [size.width, size.height]
@@ -118,7 +119,7 @@ const Sankey = props => {
 
   if (props.data) {
     graph.current = sankey(props.data)
-    const { links, nodes } = graph.current
+    const { links, nodes } = props.data
 
     return (
       <svg width={size.width} height={size.height}>
