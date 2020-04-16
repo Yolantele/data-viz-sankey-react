@@ -18,7 +18,7 @@ const App = () => (
         <CircularExample data={wasteData} width={900} height={1000} />
       </Card>
       <Card
-        title='with some circular connections represented as New Node'
+        title="geoFluxus data with the most 'overworked' node represented as new node (marked CIRC):"
         style={{ margin: 20, backgroundColor: '#808080' }}>
         <CircularExample data={wasteDataCirc} width={700} height={500} />
       </Card>
