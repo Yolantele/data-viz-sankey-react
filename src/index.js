@@ -13,7 +13,7 @@ const App = () => (
   <div>
     <Header />
     <Content style={{ margin: 40 }}>
-      <Typography.Title>Circular Sankey Examples:</Typography.Title>
+      <Typography.Title style={{ margin: 20 }}>Circular Sankey Examples:</Typography.Title>
       <Card title='with original geoFluxus Data' style={{ margin: 20, backgroundColor: '#707070' }}>
         <CircularExample data={wasteData} width={900} height={1000} />
       </Card>

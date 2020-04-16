@@ -14,7 +14,7 @@ const format = d3format(',d')
 
 const marginBase = {
   top: 20,
-  left: 50,
+  left: 110,
   right: 50,
   bottom: 40
 }
@@ -33,7 +33,7 @@ const CircularExample = ({ data, width, height, margin = marginBase }) => {
         size={[width, height]}
         nodeWidth={15}
         nodePadding={20}
-        nodePaddingRatio={0.3}
+        nodePaddingRatio={0.2}
         nodeId={d => d.name}
         iterations={25}>
         {({ data }) => (
@@ -83,8 +83,7 @@ const CircularExample = ({ data, width, height, margin = marginBase }) => {
                         ? '#303030'
                         : CRAYOLA_COLOURS[i].hex || CRAYOLA_COLOURS[i / 5].hex
                     }
-                    strokeWidth={Math.max(1, link.width < 6 ? link.width * 3 : link.width)}
-                    // strokeWidth={Math.max(1, link.width)}
+                    strokeWidth={Math.max(1, link.width)}
                     opacity={link.circular ? opacity / 2 : opacity}
                     fill={'none'}
                   />
