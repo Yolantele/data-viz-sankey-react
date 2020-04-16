@@ -16,7 +16,7 @@ const marginBase = {
   top: 20,
   left: 50,
   right: 50,
-  bottom: 50
+  bottom: 40
 }
 
 const CircularExample = ({ data, width, height, margin = marginBase }) => {
@@ -25,17 +25,17 @@ const CircularExample = ({ data, width, height, margin = marginBase }) => {
   let opacity = 0.7
 
   return (
-    <svg width={width + margin.left + margin.right} height={height}>
+    <svg width={width + margin.left + margin.right} height={height + margin.bottom + margin.top}>
       <Sankey
         top={margin.top}
         left={margin.left}
         data={data}
         size={[width, height]}
         nodeWidth={15}
-        nodePadding={10}
-        nodePaddingRatio={0.4}
+        nodePadding={20}
+        nodePaddingRatio={0.3}
         nodeId={d => d.name}
-        iterations={32}>
+        iterations={25}>
         {({ data }) => (
           <Group>
             {
@@ -57,7 +57,7 @@ const CircularExample = ({ data, width, height, margin = marginBase }) => {
                 />
                 <Tooltip title={node.name}>
                   <Text
-                    x={node.x0 < 900 / 2 ? -10 : 20}
+                    x={node.x0 < 900 / 2 ? -5 : 20}
                     y={(node.y1 - node.y0) / 2}
                     verticalAnchor='middle'
                     style={{
@@ -71,7 +71,7 @@ const CircularExample = ({ data, width, height, margin = marginBase }) => {
               </Group>
             ))}
 
-            <Group strokeOpacity={1} style={{ zIndex: -50 }}>
+            <Group strokeOpacity={1}>
               {data.links.map((link, i) => {
                 return (
                   <path
