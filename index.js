@@ -111,7 +111,7 @@ let newLinks = []
 const nodeStringsToIndexes = () => {
   console.log('-----', newData.links[4].value)
   newData.links.forEach(link => {
-    link.value = link.value * 100
+    link.value = link.value
 
     return link
   })

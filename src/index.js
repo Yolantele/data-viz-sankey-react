@@ -1,40 +1,25 @@
-import React, { useState, useEffect } from 'react'
-import ReactDOM from 'react-dom'
-import Sankey from './Sankey'
-import { Layout, Card, Button } from 'antd'
-import { NODES } from './geoFluxusData'
+import { Layout, Card, Button, Typography } from 'antd'
 import './styles.css'
+import wasteData from './data/geoFluxusData'
+import circularData from './data/circularData'
+import { render } from 'react-dom'
+import React from 'react'
+import { CircularExample, Example } from './views'
+
 const { Header, Footer, Content } = Layout
-const App = () => {
-  const [data, setData] = useState(null)
-  const [editMode, setEditMode] = useState(false)
 
-  useEffect(() => {
-    // fetch('https://raw.githubusercontent.com/ozlongblack/d3/master/energy.json')
-    //   .then(res => res.json())
-    //   .then(data => {
-    setData(NODES)
-    console.group(data)
-    // })
-  }, [])
+const App = () => (
+  <div>
+    <Header />
+    <Content>
+      <Card title='Circular sankey example' style={{ margin: 20, backgroundColor: '#707070' }}>
+        {/* <CircularExample data={circularData} width={960} height={500} /> */}
+        <CircularExample data={wasteData} width={900} height={1000} />
+      </Card>
+    </Content>
 
-  return (
-    <div className='App'>
-      <Header />
-      <Content>
-        <Card style={{ margin: 20, padding: 20, minWidth: 900 }}>
-          <Button type={'primary'} onClick={() => setEditMode(!editMode)} style={{ margin: 30 }}>
-            Edit Mode
-          </Button>
-          <div style={{ position: 'relative', width: 800, height: 800 }}>
-            <Sankey data={data} edit={editMode} />
-          </div>
-        </Card>
-      </Content>
-      <Footer style={{ height: 200 }} />
-    </div>
-  )
-}
+    <Footer style={{ height: 200 }} />
+  </div>
+)
 
-const rootElement = document.getElementById('root')
-ReactDOM.render(<App />, rootElement)
+render(<App />, document.getElementById('root'))

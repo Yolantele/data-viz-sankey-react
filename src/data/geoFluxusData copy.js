@@ -1,4 +1,4 @@
-export const NODES = {
+export default {
   nodes: [
     { val: 0, name: 'A AGRICULTURE, FORESTRY AND FISHING (A)' },
     { val: 1, name: 'C MANUFACTURING (C)' },
