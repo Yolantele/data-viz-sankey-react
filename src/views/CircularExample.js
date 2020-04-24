@@ -16,7 +16,7 @@ const marginBase = {
   bottom: 0
 }
 
-const MIN_DATA_WIDTH = 2
+const MIN_DATA_WIDTH = 0
 
 const CircularExample = ({ data, width, height, margin = marginBase }) => {
   const [opacities, setOpacities] = useState([])
