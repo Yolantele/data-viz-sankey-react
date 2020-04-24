@@ -1,99 +1,127 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Group } from '@vx/group'
-import { Tooltip, Typography } from 'antd'
+import { Tooltip } from 'antd'
 import { Text } from '@vx/text'
 import { scaleSequential } from 'd3-scale'
 import { interpolateCool } from 'd3-scale-chromatic'
-import { format as d3format } from 'd3-format'
 import { extent } from 'd3-array'
 import { CircularSankey as Sankey } from '../comps'
-import { CRAYOLA_COLOURS } from '../const'
+import { Button } from 'antd'
 
 const color = scaleSequential(interpolateCool)
-const format = d3format(',d')
-
 const marginBase = {
-  top: 20,
-  left: 110,
+  top: 30,
+  left: 130,
   right: 50,
-  bottom: 40
+  bottom: 0
 }
 
-const CircularExample = ({ data, width, height, margin = marginBase }) => {
-  if (width < 10) return null
+const MIN_DATA_WIDTH = 2
 
+const CircularExample = ({ data, width, height, margin = marginBase }) => {
+  const [opacities, setOpacities] = useState([])
+
+  console.log('opacities', opacities)
   let opacity = 0.7
 
   return (
-    <svg width={width + margin.left + margin.right} height={height + margin.bottom + margin.top}>
-      <Sankey
-        top={margin.top}
-        left={margin.left}
-        data={data}
-        size={[width, height]}
-        nodeWidth={15}
-        nodePadding={20}
-        nodePaddingRatio={0.2}
-        nodeId={d => d.name}
-        iterations={25}>
-        {({ data }) => (
-          <Group>
-            {
-              // Hack to set color domain after <Sankey> has set depth
-              color.domain(extent(data.nodes, d => d.depth))
-            }
+    <>
+      <Button type='primary' onClick={() => setOpacities([])}>
+        Reset Diagram
+      </Button>
+      <svg width={width + margin.left + margin.right} height={height + margin.bottom + margin.top}>
+        <Sankey
+          top={margin.top}
+          left={margin.left}
+          data={data}
+          size={[width, height]}
+          nodeWidth={10}
+          nodePadding={25}
+          nodePaddingRatio={0.5}
+          nodeId={d => d.name}
+          iterations={3}>
+          {({ data }) => {
+            return (
+              <Group>
+                {// Hack to set color domain after <Sankey> has set depth
+                color.domain(extent(data.nodes, d => d.depth))}
+                {data.nodes.map((node, i) => {
+                  const { x0, x1, y0, y1, index, name, sourceLinks, targetLinks } = node
+                  let linksWithHighOpacity = []
+                  if (y1 - y0 > MIN_DATA_WIDTH) {
+                    return (
+                      <Group top={y0} left={x0} key={`node-${i}`}>
+                        <rect
+                          onClick={() => {
+                            console.log('node---', node)
+                            sourceLinks.forEach(link => linksWithHighOpacity.push(link.index))
+                            targetLinks.forEach(link => linksWithHighOpacity.push(link.index))
+                            setOpacities(linksWithHighOpacity)
+                          }}
+                          // onHover={() => console.log('onhover link---', node)}
+                          id={`rect-${i}`}
+                          width={x1 - x0}
+                          height={y1 - y0}
+                          fill={color(index)}
+                          opacity={0.8}
+                          stroske={color(index)}
+                          strokeWidth={2}
+                        />
+                        <Tooltip title={name.toLowerCase()}>
+                          <Text
+                            x={x0 < 900 / 2 ? -5 : 20}
+                            y={(y1 - y0) / 2}
+                            verticalAnchor='middle'
+                            style={{
+                              fontSize: 12,
+                              textAnchor: x0 < 900 / 2 ? 'end' : 'start'
+                            }}>
+                            {name.length > 15
+                              ? name.substr(2, 15).toLowerCase() + '...'
+                              : name.substr(2, 15).toLowerCase()}
+                          </Text>
+                        </Tooltip>
+                      </Group>
+                    )
+                  }
+                  return null
+                })}
 
-            {data.nodes.map((node, i) => (
-              <Group top={node.y0} left={node.x0} key={`node-${i}`}>
-                <rect
-                  id={`rect-${i}`}
-                  width={node.x1 - node.x0}
-                  height={node.y1 - node.y0}
-                  // fill={color(node.depth)}
-                  fill={'#303030'}
-                  opacity={0.8}
-                  stroke='#303030'
-                  strokeWidth={2}
-                />
-                <Tooltip title={node.name}>
-                  <Text
-                    x={node.x0 < 900 / 2 ? -5 : 20}
-                    y={(node.y1 - node.y0) / 2}
-                    verticalAnchor='middle'
-                    style={{
-                      fontSize: 12,
-                      fontWeight: 'bold',
-                      textAnchor: node.x0 < 900 / 2 ? 'end' : 'start'
-                    }}>
-                    {node.name.substr(0, 10) + '...'}
-                  </Text>
-                </Tooltip>
-              </Group>
-            ))}
-
-            <Group strokeOpacity={1}>
-              {data.links.map((link, i) => {
-                return (
-                  <path
-                    // onClick={() => opacity.push({ opacity: 0.7 })}
-                    key={`link-${i}`}
-                    d={link.path}
-                    stroke={
-                      link.circular
-                        ? '#303030'
-                        : CRAYOLA_COLOURS[i].hex || CRAYOLA_COLOURS[i / 5].hex
+                <Group strokeOpacity={1}>
+                  {data.links.map((link, i) => {
+                    const { width, target, circular, path, index } = link
+                    if (width > MIN_DATA_WIDTH) {
+                      const asignOpacity = index => {
+                        if (opacities.length === 0 && !circular) return opacity
+                        if (opacities.length === 0 && circular) return opacity / 2
+                        if (opacities.includes(index) && !circular) return opacity
+                        if (opacities.includes(index) && circular) return opacity / 2
+                        else return 0.05
+                      }
+                      return (
+                        <path
+                          // onClick={() => {
+                          //   // console.log('link---', link)
+                          // }}
+                          // onHover={() => console.log('onhover link---', link)}
+                          key={`link-${i}`}
+                          d={path}
+                          stroke={color(target.index)}
+                          strokeWidth={Math.max(1, width)}
+                          opacity={asignOpacity(index)}
+                          fill={'none'}
+                        />
+                      )
                     }
-                    strokeWidth={Math.max(1, link.width)}
-                    opacity={link.circular ? opacity / 2 : opacity}
-                    fill={'none'}
-                  />
-                )
-              })}
-            </Group>
-          </Group>
-        )}
-      </Sankey>
-    </svg>
+                    return null
+                  })}
+                </Group>
+              </Group>
+            )
+          }}
+        </Sankey>
+      </svg>
+    </>
   )
 }
 

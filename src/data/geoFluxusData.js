@@ -19,7 +19,7 @@ export default {
     { name: 'Q HUMAN HEALTH AND SOCIAL WORK ACTIVITIES (Q)' },
     { name: 'R ARTS, ENTERTAINMENT AND RECREATION (R)' },
     { name: 'S OTHER SERVICE ACTIVITIES (S)' },
-    { name: 'Stock' },
+    { name: '   Stock' },
     { name: 'V NON-ECONOMIC ACTIVITIES (V)' },
     { name: 'Z SME (Z)' }
   ],
@@ -482,7 +482,7 @@ export default {
       target: 'E WATER SUPPLY, SEWERAGE, WASTE MANAGEMENT AND REMEDIATION (E)',
       value: 37000
     },
-    { source: 'V NON-ECONOMIC ACTIVITIES (V)', target: 'Stock', value: 528000 },
+    { source: 'V NON-ECONOMIC ACTIVITIES (V)', target: '   Stock', value: 528000 },
     {
       source: 'E WATER SUPPLY, SEWERAGE, WASTE MANAGEMENT AND REMEDIATION (E)',
       target: 'H TRANSPORTATION AND STORAGE (H)',
