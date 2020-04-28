@@ -12,15 +12,15 @@ const App = () => (
   <div>
     <Header />
     <Content style={{ margin: 40 }}>
-      <Typography.Title style={{ margin: 20 }}>Circular Sankey Examples:</Typography.Title>
+      <Typography.Title style={{ margin: 20 }}>Circular Data:</Typography.Title>
       <Card title='with original geoFluxus Data' style={{ margin: 20, backgroundColor: '#707070' }}>
         <CircularExample data={wasteData} width={900} height={1000} />
       </Card>
-      <Card
+      {/* <Card
         title='with fewer links to each node'
         style={{ margin: 20, backgroundColor: '#707070' }}>
         <CircularExample data={circularData} width={960} height={500} />
-      </Card>
+      </Card> */}
     </Content>
 
     <Footer style={{ height: 200 }} />
