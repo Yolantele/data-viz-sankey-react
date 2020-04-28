@@ -10,10 +10,17 @@ import { Button } from 'antd'
 
 const color = scaleSequential(interpolateCool)
 const marginBase = {
-  top: 30,
+  top: 50,
   left: 130,
   right: 50,
   bottom: 0
+}
+
+const boxStyle = {
+  width: '100%',
+  display: 'center',
+  alignItems: 'center',
+  justifyContent: 'center'
 }
 
 const MIN_DATA_WIDTH = 0
@@ -33,9 +40,11 @@ const CircularExample = ({ data, width, height, margin = marginBase }) => {
 
   return (
     <>
-      <Button type='primary' onClick={() => setOpacities([])}>
-        Reset Diagram
-      </Button>
+      <section style={boxStyle}>
+        <Button type='primary' onClick={() => setOpacities([])}>
+          Reset Diagram
+        </Button>
+      </section>
       <svg width={width + margin.left + margin.right} height={height + margin.bottom + margin.top}>
         <Sankey
           top={margin.top}
