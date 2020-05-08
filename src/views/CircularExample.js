@@ -46,7 +46,7 @@ const CircularExample = ({ data, width, height, margin = marginBase }) => {
           Hover and Click on the square nodes and names to reveal exclusive connections
         </Typography.Text>
         <br />
-        <Button type='primary' onClick={() => setOpacities([])} style={{ marginBottom: 10 }}>
+        <Button type='primary' onClick={() => setOpacities([])} style={{ marginTop: 10 }}>
           Reset Diagram
         </Button>
       </section>
