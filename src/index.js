@@ -6,7 +6,7 @@ import React from 'react'
 import { CircularExample } from './views'
 
 const App = () => (
-  <Card style={{ backgroundColor: 'lightslategray' }}>
+  <Card style={{ backgroundColor: 'grey', borderRadius: 20 }}>
     <CircularExample data={wasteData} width={900} height={1000} />
   </Card>
 )
