@@ -1,4 +1,4 @@
-import { Card } from 'antd'
+import { Card, Typography } from 'antd'
 import './styles.css'
 import wasteData from './data/geoFluxusData'
 import { render } from 'react-dom'
@@ -6,7 +6,7 @@ import React from 'react'
 import { CircularExample } from './views'
 
 const App = () => (
-  <Card style={{ backgroundColor: 'darkslategrey' }}>
+  <Card style={{ backgroundColor: 'lightslategray' }}>
     <CircularExample data={wasteData} width={900} height={1000} />
   </Card>
 )

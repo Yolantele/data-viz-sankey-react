@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Group } from '@vx/group'
-import { Tooltip } from 'antd'
+import { Tooltip, Typography } from 'antd'
 import { Text } from '@vx/text'
 import { scaleSequential } from 'd3-scale'
 import { interpolateCool } from 'd3-scale-chromatic'
@@ -20,7 +20,8 @@ const boxStyle = {
   width: '100%',
   display: 'center',
   alignItems: 'center',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  marginBottom: 20
 }
 
 const MIN_DATA_WIDTH = 0
@@ -41,7 +42,11 @@ const CircularExample = ({ data, width, height, margin = marginBase }) => {
   return (
     <>
       <section style={boxStyle}>
-        <Button type='primary' onClick={() => setOpacities([])}>
+        <Typography.Text size='small'>
+          Hover and Click on the square nodes and names to reveal exclusive connections
+        </Typography.Text>
+        <br />
+        <Button type='primary' onClick={() => setOpacities([])} style={{ marginBottom: 10 }}>
           Reset Diagram
         </Button>
       </section>
@@ -54,23 +59,27 @@ const CircularExample = ({ data, width, height, margin = marginBase }) => {
           nodeWidth={10}
           nodePadding={25}
           nodePaddingRatio={0.5}
-          nodeId={d => d.name}
+          nodeId={(d) => d.name}
           iterations={3}>
           {({ data }) => {
             return (
               <Group>
-                {// Hack to set color domain after <Sankey> has set depth
-                color.domain(extent(data.nodes, d => d.depth))}
+                {
+                  // Hack to set color domain after <Sankey> has set depth
+                  color.domain(extent(data.nodes, (d) => d.depth))
+                }
                 {data.nodes.map((node, i) => {
                   const { x0, x1, y0, y1, index, name, sourceLinks, targetLinks } = node
                   let linksWithHighOpacity = []
+                  let nodesWithHighOpacity = []
+                  console.log(node)
                   if (y1 - y0 > MIN_DATA_WIDTH) {
                     return (
                       <Group top={y0} left={x0} key={`node-${i}`}>
                         <rect
                           onClick={() => {
-                            sourceLinks.forEach(link => linksWithHighOpacity.push(link.index))
-                            targetLinks.forEach(link => linksWithHighOpacity.push(link.index))
+                            sourceLinks.forEach((link) => linksWithHighOpacity.push(link.index))
+                            targetLinks.forEach((link) => linksWithHighOpacity.push(link.index))
                             setOpacities(linksWithHighOpacity)
                           }}
                           id={`rect-${i}`}
@@ -78,7 +87,7 @@ const CircularExample = ({ data, width, height, margin = marginBase }) => {
                           height={y1 - y0}
                           fill={color(index)}
                           opacity={0.8}
-                          stroske={color(index)}
+                          stroke={color(index)}
                           strokeWidth={2}
                         />
                         <Tooltip title={name.toLowerCase()}>
