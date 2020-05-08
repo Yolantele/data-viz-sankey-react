@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
 import { Group } from '@vx/group'
-import { Tooltip, Typography } from 'antd'
 import { Text } from '@vx/text'
 import { scaleSequential } from 'd3-scale'
 import { interpolateCool } from 'd3-scale-chromatic'
 import { extent } from 'd3-array'
 import { CircularSankey as Sankey } from '../comps'
-import { Button } from 'antd'
 
 const color = scaleSequential(interpolateCool)
 const marginBase = {
   top: 50,
-  left: 130,
+  left: 300,
   right: 50,
   bottom: 0
 }
@@ -21,10 +19,11 @@ const boxStyle = {
   display: 'center',
   alignItems: 'center',
   justifyContent: 'center',
-  marginBottom: 20
+  margin: 20
 }
 
 const MIN_DATA_WIDTH = 0
+const LENGTH_OF_THE_WORDS = 35
 
 const CircularExample = ({ data, width, height, margin = marginBase }) => {
   const [opacities, setOpacities] = useState([])
@@ -40,15 +39,22 @@ const CircularExample = ({ data, width, height, margin = marginBase }) => {
   }
 
   return (
-    <>
+    <div>
       <section style={boxStyle}>
-        <Typography.Text size='small'>
+        <h4 style={{ fontFamily: 'sans-serif' }}>
           Hover and Click on the square nodes and names to reveal exclusive connections
-        </Typography.Text>
+        </h4>
         <br />
-        <Button type='primary' onClick={() => setOpacities([])} style={{ marginTop: 10 }}>
+        <button
+          style={{
+            padding: 10,
+            margin: 10,
+            border: '1px solid lightgrey',
+            backgroundColor: 'lightgrey'
+          }}
+          onClick={() => setOpacities([])}>
           Reset Diagram
-        </Button>
+        </button>
       </section>
       <svg width={width + margin.left + margin.right} height={height + margin.bottom + margin.top}>
         <Sankey
@@ -90,20 +96,20 @@ const CircularExample = ({ data, width, height, margin = marginBase }) => {
                           stroke={color(index)}
                           strokeWidth={2}
                         />
-                        <Tooltip title={name.toLowerCase()}>
-                          <Text
-                            x={x0 < 900 / 2 ? -5 : 20}
-                            y={(y1 - y0) / 2}
-                            verticalAnchor='middle'
-                            style={{
-                              fontSize: 12,
-                              textAnchor: x0 < 900 / 2 ? 'end' : 'start'
-                            }}>
-                            {name.length > 15
-                              ? name.substr(2, 15).toLowerCase() + '...'
-                              : name.substr(2, 15).toLowerCase()}
-                          </Text>
-                        </Tooltip>
+                        {/* <Tooltip title={name.toLowerCase()}> */}
+                        <Text
+                          x={x0 < 900 / 2 ? -5 : 20}
+                          y={(y1 - y0) / 2}
+                          verticalAnchor='middle'
+                          style={{
+                            fontFamily: 'sans-serif',
+                            fontSize: 12,
+                            textAnchor: x0 < 900 / 2 ? 'end' : 'start'
+                          }}>
+                          {name.length > 15
+                            ? name.substr(2, LENGTH_OF_THE_WORDS).toLowerCase() + '...'
+                            : name.substr(2, LENGTH_OF_THE_WORDS).toLowerCase()}
+                        </Text>
                       </Group>
                     )
                   }
@@ -133,7 +139,7 @@ const CircularExample = ({ data, width, height, margin = marginBase }) => {
           }}
         </Sankey>
       </svg>
-    </>
+    </div>
   )
 }
 
