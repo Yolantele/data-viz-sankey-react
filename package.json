@@ -1,8 +1,9 @@
 {
-  "name": "geoFluxus-circular-sankey",
-  "version": "1.0.0",
+  "name": "geofluxus-circular-sankey",
+  "version": "1.0.1",
   "description": "react d3 circular sankey component for data visualisations",
   "main": "./lib/index.js",
+  "homepage": "https://github.com/Yolantele/data-viz-sankey-react/tree/npm-module-export",
   "publishConfig": {
     "access": "public"
   },

@@ -10,7 +10,7 @@ Uses:
 install the npm module then in your project:
 
 ```
-import CircularSanky from 'geoFluxus-circular-sankey'
+import CircularSanky from 'geofluxus-circular-sankey'
 ```
 
 Within your JS View definition use the component:
@@ -76,3 +76,5 @@ const yourCircularData = {
   ]
 }
 ```
+
+<img width="1201" alt="Screenshot 2020-05-09 at 10 50 37" src="https://user-images.githubusercontent.com/30931242/81470576-5487a180-91e3-11ea-86b5-27b95139b540.png">
