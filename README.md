@@ -89,7 +89,7 @@ Should be a readable circular sankey with the ability to highlight key data node
 
 <img width="1201" alt="Screenshot 2020-05-09 at 10 50 37" src="https://user-images.githubusercontent.com/30931242/81470576-5487a180-91e3-11ea-86b5-27b95139b540.png">
 
-### React/ Hook issue
+### React instance / Hook called outside of fuction issue
 
 currently the community is reporting potential issues with hooks being called outside of function or multiple react instances. In this case, add a resolver to your webpack.config.js :
 
