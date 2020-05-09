@@ -1,5 +1,5 @@
 import testData from './data/testData'
-import { render } from 'react-dom'
+// import { render } from 'react-dom'
 import React from 'react'
 import { CircularExample } from './views'
 import './styles.css'
@@ -21,4 +21,4 @@ const CircularSankey = ({
 }
 
 export default CircularSankey
-render(<CircularSankey />, document.getElementById('root'))
+// render(<CircularSankey />, document.getElementById('root'))
