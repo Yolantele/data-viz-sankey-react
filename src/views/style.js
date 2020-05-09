@@ -11,7 +11,11 @@ export const style = {
     padding: 10,
     margin: 10,
     border: '1px solid lightgrey',
-    backgroundColor: 'lightgrey'
+    backgroundColor: 'lightgrey',
+    borderRadius: 5,
+    '&:hover': {
+      background: '#efefef'
+    }
   },
   font: {
     fontFamily: 'sans-serif',

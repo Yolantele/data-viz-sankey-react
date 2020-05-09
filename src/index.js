@@ -2,6 +2,7 @@ import testData from './data/testData'
 import { render } from 'react-dom'
 import React from 'react'
 import { CircularExample } from './views'
+import './styles.css'
 
 const margins = {
   top: 50,

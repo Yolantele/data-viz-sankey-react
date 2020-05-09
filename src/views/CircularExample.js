@@ -28,13 +28,13 @@ const CircularExample = ({ data, width, height, absolutePosition }) => {
   return (
     <div>
       <section style={style.box}>
-        <h4 style={{ fontFamily: 'sans-serif' }}>
-          Click on square nodes to highlight exclusive links
-        </h4>
         <br />
         <button style={style.button} onClick={() => setOpacities([])}>
           Reset Diagram Opacity
         </button>
+        <h5 style={{ fontFamily: 'sans-serif', ...style.font }}>
+          click on square nodes to highlight exclusive links
+        </h5>
       </section>
       <svg
         width={width + absolutePosition.left + absolutePosition.right}
