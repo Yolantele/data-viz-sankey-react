@@ -1,9 +1,10 @@
 import testData from './data/testData'
-// import { render } from 'react-dom'
 import React, { useState } from 'react'
 import { CircularExample } from './views'
 import './styles.css'
+// import { render } from 'react-dom'
 import { style } from './views/style'
+
 const margins = {
   top: 50,
   left: 300,
