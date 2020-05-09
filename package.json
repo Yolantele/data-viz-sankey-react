@@ -4,7 +4,7 @@
   "description": "react d3 circular sankey component for data visualisations",
   "main": "./lib/index.js",
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "author": {
     "name": "Jolanta Jas",
