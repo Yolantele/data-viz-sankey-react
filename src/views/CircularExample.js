@@ -5,27 +5,14 @@ import { scaleSequential } from 'd3-scale'
 import { interpolateCool } from 'd3-scale-chromatic'
 import { extent } from 'd3-array'
 import { CircularSankey as Sankey } from '../comps'
+import { style } from './style'
 
 const color = scaleSequential(interpolateCool)
-const marginBase = {
-  top: 50,
-  left: 300,
-  right: 50,
-  bottom: 0
-}
-
-const boxStyle = {
-  width: '100%',
-  display: 'center',
-  alignItems: 'center',
-  justifyContent: 'center',
-  margin: 20
-}
 
 const MIN_DATA_WIDTH = 0
 const LENGTH_OF_THE_WORDS = 35
 
-const CircularExample = ({ data, width, height, margin = marginBase }) => {
+const CircularExample = ({ data, width, height, absolutePosition }) => {
   const [opacities, setOpacities] = useState([])
 
   let opacity = 0.7
@@ -40,26 +27,21 @@ const CircularExample = ({ data, width, height, margin = marginBase }) => {
 
   return (
     <div>
-      <section style={boxStyle}>
+      <section style={style.box}>
         <h4 style={{ fontFamily: 'sans-serif' }}>
-          Hover and Click on the square nodes and names to reveal exclusive connections
+          Click on square nodes to highlight exclusive links
         </h4>
         <br />
-        <button
-          style={{
-            padding: 10,
-            margin: 10,
-            border: '1px solid lightgrey',
-            backgroundColor: 'lightgrey'
-          }}
-          onClick={() => setOpacities([])}>
-          Reset Diagram
+        <button style={style.button} onClick={() => setOpacities([])}>
+          Reset Diagram Opacity
         </button>
       </section>
-      <svg width={width + margin.left + margin.right} height={height + margin.bottom + margin.top}>
+      <svg
+        width={width + absolutePosition.left + absolutePosition.right}
+        height={height + absolutePosition.bottom + absolutePosition.top}>
         <Sankey
-          top={margin.top}
-          left={margin.left}
+          top={absolutePosition.top}
+          left={absolutePosition.left}
           data={data}
           size={[width, height]}
           nodeWidth={10}
@@ -77,8 +59,6 @@ const CircularExample = ({ data, width, height, margin = marginBase }) => {
                 {data.nodes.map((node, i) => {
                   const { x0, x1, y0, y1, index, name, sourceLinks, targetLinks } = node
                   let linksWithHighOpacity = []
-                  let nodesWithHighOpacity = []
-                  console.log(node)
                   if (y1 - y0 > MIN_DATA_WIDTH) {
                     return (
                       <Group top={y0} left={x0} key={`node-${i}`}>
@@ -96,16 +76,11 @@ const CircularExample = ({ data, width, height, margin = marginBase }) => {
                           stroke={color(index)}
                           strokeWidth={2}
                         />
-                        {/* <Tooltip title={name.toLowerCase()}> */}
                         <Text
                           x={x0 < 900 / 2 ? -5 : 20}
                           y={(y1 - y0) / 2}
                           verticalAnchor='middle'
-                          style={{
-                            fontFamily: 'sans-serif',
-                            fontSize: 12,
-                            textAnchor: x0 < 900 / 2 ? 'end' : 'start'
-                          }}>
+                          style={{ ...style.font, textAnchor: x0 < 900 / 2 ? 'end' : 'start' }}>
                           {name.length > 15
                             ? name.substr(2, LENGTH_OF_THE_WORDS).toLowerCase() + '...'
                             : name.substr(2, LENGTH_OF_THE_WORDS).toLowerCase()}
