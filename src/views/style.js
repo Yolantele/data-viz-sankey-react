@@ -12,6 +12,7 @@ export const style = {
     margin: 10,
     border: '1px solid lightgrey',
     backgroundColor: 'lightgrey',
+    fontSize: 14,
     borderRadius: 5,
     '&:hover': {
       background: '#efefef'

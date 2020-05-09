@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Group } from '@vx/group'
 import { Text } from '@vx/text'
 import { scaleSequential } from 'd3-scale'
@@ -12,9 +12,7 @@ const color = scaleSequential(interpolateCool)
 const MIN_DATA_WIDTH = 0
 const LENGTH_OF_THE_WORDS = 35
 
-const CircularExample = ({ data, width, height, absolutePosition }) => {
-  const [opacities, setOpacities] = useState([])
-
+const CircularExample = ({ data, width, height, absolutePosition, opacities, setOpacities }) => {
   let opacity = 0.7
 
   const asignOpacity = (index, circular) => {
@@ -27,7 +25,7 @@ const CircularExample = ({ data, width, height, absolutePosition }) => {
 
   return (
     <div>
-      <section style={style.box}>
+      {/* <section style={style.box}>
         <br />
         <button style={style.button} onClick={() => setOpacities([])}>
           Reset Diagram Opacity
@@ -35,7 +33,7 @@ const CircularExample = ({ data, width, height, absolutePosition }) => {
         <h5 style={{ fontFamily: 'sans-serif', ...style.font }}>
           click on square nodes to highlight exclusive links
         </h5>
-      </section>
+      </section> */}
       <svg
         width={width + absolutePosition.left + absolutePosition.right}
         height={height + absolutePosition.bottom + absolutePosition.top}>
