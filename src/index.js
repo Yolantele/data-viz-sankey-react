@@ -1,7 +1,6 @@
 import testData from './data/testData'
 import React, { useState } from 'react'
 import { CircularExample } from './views'
-import './styles.css'
 // import { render } from 'react-dom'
 import { style } from './views/style'
 

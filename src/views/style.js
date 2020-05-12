@@ -13,6 +13,8 @@ export const style = {
     border: '1px solid lightgrey',
     backgroundColor: 'lightgrey',
     fontSize: 14,
+    fontFamily: 'sans-serif',
+    fontWeight: 100,
     borderRadius: 5,
     '&:hover': {
       background: '#efefef'
@@ -20,6 +22,7 @@ export const style = {
   },
   font: {
     fontFamily: 'sans-serif',
+    fontWeight: 100,
     fontSize: 12
   }
 }
