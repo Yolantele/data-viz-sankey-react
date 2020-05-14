@@ -87,7 +87,7 @@ See [this link](https://blog.engineyard.com/integrating-react-with-backbone) for
 
 Should be a readable circular sankey with the ability to highlight key data nodes by clicking on the square nodes:
 
-<img width="1201" alt="Screenshot 2020-05-09 at 10 50 37" src="https://user-images.githubusercontent.com/30931242/81470576-5487a180-91e3-11ea-86b5-27b95139b540.png">
+<img width="1375" alt="Screenshot 2020-05-14 at 11 17 00" src="https://user-images.githubusercontent.com/30931242/81922788-87130f00-95d4-11ea-8f5f-5948bd63bce0.png">
 
 ### React instance / Hook called outside of fuction issue
 

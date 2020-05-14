@@ -1,6 +1,6 @@
 {
   "name": "geofluxus-circular-sankey",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "React d3 circular sankey component for data visualisations",
   "main": "./lib/index.js",
   "homepage": "https://github.com/Yolantele/geofluxus-circular-sankey",
