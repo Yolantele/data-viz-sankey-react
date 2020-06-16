@@ -1,7 +1,0 @@
-@import './reset.css'; /* @import '~antd/dist/antd.css'; */
-@import '~antd/dist/antd.dark.css';
-/* @import '~antd/dist/antd.compact.css'; */
-.App {
-  font-family: sans-serif;
-  text-align: center;
-}

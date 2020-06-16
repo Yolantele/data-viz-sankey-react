@@ -1,14 +1,28 @@
-import { Card, Typography } from 'antd'
-import './styles.css'
-import wasteData from './data/geoFluxusData'
-import { render } from 'react-dom'
+import testData from './data/testData'
 import React from 'react'
 import { CircularExample } from './views'
+// import { render } from 'react-dom'
 
-const App = () => (
-  <Card style={{ backgroundColor: 'grey', borderRadius: 20 }}>
-    <CircularExample data={wasteData} width={900} height={1000} />
-  </Card>
-)
+const CircularSankey = ({
+  data = testData,
+  width,
+  height,
+  absolutePosition,
+  fontColor,
+  fontSize,
+  unitString
+}) => {
+  return (
+    <div>
+      <CircularExample
+        {...{ data, width, height, absolutePosition, fontColor, fontSize, unitString }}
+      />
+    </div>
+  )
+}
 
-render(<App />, document.getElementById('root'))
+export default CircularSankey
+// render(
+//   <CircularSankey fontColor={'gray'} width={900} height={900} fontSize={18} unitString={'CO2 t'} />,
+//   document.getElementById('root')
+// )

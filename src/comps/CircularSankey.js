@@ -50,19 +50,4 @@ export default function CircularSankey({
       </Group>
     )
   }
-
-  // TODO: Support no-child function as well (nodeComponent/linkComponent)
-
-  // return (
-  //   <Group top={top} left={left} className={cx('vx-sankey', className)}>
-  //     {nodeComponent &&
-  //       descendants.map((node, i) => {
-  //         return (
-  //           <Group key={`pack-node-${i}`}>
-  //             {React.createElement(nodeComponent, { node })}
-  //           </Group>
-  //         );
-  //       })}
-  //   </Group>
-  // );
 }
