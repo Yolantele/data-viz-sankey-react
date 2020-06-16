@@ -3,10 +3,20 @@ import { Group } from '@vx/group'
 import { Text } from '@vx/text'
 import { style } from './style'
 import { ANGENDA, DIMENSIONS } from './const'
+import numeral from 'numeral'
 
 const { MIN_DATA_WIDTH, BREAKPOINT } = DIMENSIONS
 
-const Nodes = ({ data, color, opacities, setOpacities, fontColor }) => {
+const Nodes = ({
+  data,
+  color,
+  opacities,
+  setOpacities,
+  fontColor,
+  fontSize,
+  handleMouseOver,
+  hideTooltip
+}) => {
   const assignName = (name) => {
     if (name.length > ANGENDA) return name.substr(0, ANGENDA).toLowerCase() + '...'
     return name.substr(0, ANGENDA).toLowerCase()
@@ -15,11 +25,21 @@ const Nodes = ({ data, color, opacities, setOpacities, fontColor }) => {
   return (
     <>
       {data.nodes.map((node, i) => {
-        const { x0, x1, y0, y1, index, name, sourceLinks, targetLinks } = node
+        const { x0, x1, y0, y1, index, name, sourceLinks, targetLinks, value } = node
         let linksWithHighOpacity = []
         if (y1 - y0 > MIN_DATA_WIDTH) {
           return (
-            <Group top={y0} left={x0} key={`node-${i}`}>
+            <Group
+              top={y0}
+              left={x0}
+              key={`node-${i}`}
+              onMouseOver={(e) =>
+                handleMouseOver(e, {
+                  name: name.toLowerCase(),
+                  value: numeral(value).format('0, 0')
+                })
+              }
+              onMouseOut={hideTooltip}>
               <rect
                 onClick={() => {
                   sourceLinks.forEach((link) => linksWithHighOpacity.push(link.index))
@@ -41,7 +61,8 @@ const Nodes = ({ data, color, opacities, setOpacities, fontColor }) => {
                 fill={fontColor}
                 style={{
                   ...style.font,
-                  textAnchor: x0 < BREAKPOINT / 2 ? 'end' : 'start'
+                  textAnchor: x0 < BREAKPOINT / 2 ? 'end' : 'start',
+                  fontSize
                 }}>
                 {assignName(name)}
               </Text>

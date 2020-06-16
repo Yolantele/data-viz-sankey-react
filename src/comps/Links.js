@@ -18,6 +18,7 @@ const Links = ({ data, color, opacities }) => {
     <Group strokeOpacity={1}>
       {data.links.map((link, i) => {
         const { width, target, circular, path, index } = link
+
         if (width > MIN_DATA_WIDTH) {
           return (
             <path
