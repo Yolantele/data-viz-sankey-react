@@ -17,47 +17,47 @@ then in your React (or other) project:
 import CircularSanky from 'geofluxus-circular-sankey'
 ```
 
-Within React View Component use the component:
+Use the component:
 
 ```
-const YourView = () => <CircularSankey circularData={yourCircularData} />
+const YourView = () => <CircularSankey data={yourCircularData} width={900} height={1000} />
 
 ```
 
 ### Customise Circular Sankey
 
-pass as props to the components:
+pass as props to the component:
 
-| prop name        | type and use                                             | example                                              | default                   |
-| ---------------- | -------------------------------------------------------- | ---------------------------------------------------- | ------------------------- |
-| width            | number - total width                                     | width={900}                                          | 600 min                   |
-| height           | number - total height                                    | height={700}                                         | 600 min                   |
-| absolutePosition | object - inner padding                                   | absolutePosition={pageMargins} // see example bellow | none                      |
-| data             | object - of nodes array and links array                  | data={yourCircularData} // see example bellow        | (fall-back data provided) |
-| fontColor        | string - of font color for the nodes names               | fontColor={'#f9f9f9'}                                | black                     |
-| fontSize         | number - font size for the nodes names                   | fontSize={18}                                        | 12 px                     |
-| unitString       | string - the unit for links value when hovered over node | unitString={'CO2 t'}                                 | none                      |
+| prop name        | type   | example                    | default                   |
+| ---------------- | ------ | -------------------------- | ------------------------- |
+| width            | number | width={900}                | 600 min                   |
+| height           | number | height={700}               | 600 min                   |
+| absolutePosition | object | absolutePosition={margins} | none                      |
+| data             | object | data={yourCircularData}    | (fall-back data provided) |
+| fontColor        | string | fontColor={'#f9f9f9'}      | black                     |
+| fontSize         | number | fontSize={18}              | 12 px                     |
+| unitString       | string | unitString={'CO2 t'}       | none                      |
+|                  |        |                            |                           |
+
+Example Use of props for CircularSankey component:
 
 ```
-const pageMargins = {
+const margins = {
     top: 50,
     left: 300,
     right: 50,
     bottom: 0
 }
 
-
 <CircularSankey
     data={yourCircularData}
     width={900}
     height={1000}
     absolutePosition={pageMargins}
-    fontColor={'white}
+    fontColor={'white'}
     fontSize={18}
     unitString={'CO2 (t)'}
 />
-
-
 ```
 
 ### Your Circular Data Shape
@@ -121,13 +121,5 @@ react: path.resolve('./node_modules/react')
 },
 // other webpack configurations...
 }
-
-```
-
-```
-
-```
-
-```
 
 ```
