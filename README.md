@@ -36,7 +36,7 @@ const pageMargins = {
 
 return (
     <CircularSankey
-        circularData={yourCircularData}
+        data={yourCircularData}
         width={900}
         height={1000}
         absolutePosition={pageMargins}
