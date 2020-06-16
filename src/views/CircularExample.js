@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Group } from '@vx/group'
 import { Text } from '@vx/text'
 import { scaleSequential } from 'd3-scale'
-import { interpolateCool } from 'd3-scale-chromatic'
+import { interpolateSpectral } from 'd3-scale-chromatic'
 import { extent } from 'd3-array'
 import { CircularSankey as Sankey } from '../comps'
 import { style } from './style'
 
-const color = scaleSequential(interpolateCool)
+const color = scaleSequential(interpolateSpectral)
 
 const MIN_DATA_WIDTH = 0
 const ANGENDA = 35
@@ -42,6 +42,16 @@ const CircularExample = ({ data, width, height, absolutePosition, fontColor }) =
     if (name.length > ANGENDA) return name.substr(0, ANGENDA).toLowerCase() + '...'
     return name.substr(0, ANGENDA).toLowerCase()
   }
+
+  console.log(
+    '--------',
+    color.domain(
+      extent(
+        [{ name: 'A AGRICULTURE, FORESTRY AND FISHING (A)' }, { name: 'C MANUFACTURING (C)' }],
+        (d) => d.depth
+      )
+    )
+  )
 
   return (
     <div>
