@@ -1,23 +1,18 @@
 # GeoFluxus Circular Sankey
 
-Uses:
-
-- React
-- d3
-
 ### How to use the CircularSankey component within your React (or other) projects
 
-install the npm module:
+- install the npm module:
 
 `npm i geofluxus-circular-sankey` or `yarn add geofluxus-circular-sankey`
 
-then in your React (or other) project:
+- then in your React (or other) project:
 
 ```
 import CircularSanky from 'geofluxus-circular-sankey'
 ```
 
-Use the component:
+- Use the component:
 
 ```
 const YourView = () => <CircularSankey data={yourCircularData} width={900} height={1000} />
@@ -26,7 +21,7 @@ const YourView = () => <CircularSankey data={yourCircularData} width={900} heigh
 
 ### Customise Circular Sankey
 
-pass as props to the component:
+- pass as props to the component:
 
 | prop name        | type   | example                    | default                   |
 | ---------------- | ------ | -------------------------- | ------------------------- |
@@ -37,9 +32,8 @@ pass as props to the component:
 | fontColor        | string | fontColor={'#f9f9f9'}      | black                     |
 | fontSize         | number | fontSize={18}              | 12 px                     |
 | unitString       | string | unitString={'CO2 t'}       | none                      |
-|                  |        |                            |                           |
 
-Example Use of props for CircularSankey component:
+#### Example Use of props for CircularSankey component:
 
 ```
 const margins = {
@@ -62,10 +56,11 @@ const margins = {
 
 ### Your Circular Data Shape
 
-This is very important: Circular Sankey diagram calculates unique node connections and links to them. Pass the object of your Nodes and Links with the value (represents weight/width):
+- This is very important: Circular Sankey diagram calculates unique node connections and links to them. Pass the object of your Nodes and Links with the value (represents weight/width):
 
 ```
-// make sure to provide the names for nodes that are formatted - as they will appear on the legend and tooltip hover
+// make sure to provide the names for nodes that are formatted -
+// as they will appear on the legend and tooltip hover
 
 const yourCircularData = {
   nodes: [
