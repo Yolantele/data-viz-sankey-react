@@ -1,7 +1,7 @@
 import testData from './data/testData'
 import React from 'react'
 import { CircularExample } from './views'
-// import { render } from 'react-dom'
+// import { render } from 'react-dom' // dont forget to comment out
 
 const CircularSankey = ({
   data = testData,
@@ -22,7 +22,18 @@ const CircularSankey = ({
 }
 
 export default CircularSankey
+
+// make sure to comment out:
 // render(
-//   <CircularSankey fontColor={'gray'} width={900} height={900} fontSize={18} unitString={'CO2 t'} />,
+//   <div style={{ backgroundColor: 'gray' }}>
+//     <CircularSankey
+//       fontColor={'lightgrey'}
+//       width={900}
+//       height={900}
+//       fontSize={11}
+//       unitString={'CO2 t'}
+//     />
+//     ,
+//   </div>,
 //   document.getElementById('root')
 // )
